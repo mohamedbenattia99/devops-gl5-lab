@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: ms-a
+  template:
+    metadata:
+      labels:
+        name: ms-a
+    spec:
+      containers:
+        - name: ms-a
+          image: mohamedbenattia/ms-a
+          imagePullPolicy: Always
+          env:
+            - name: MSB_HOST
+              value: "ms-b-svc.ms-b-ns"
+            - name: MSB_PORT
+              value: "80"
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              memory: 256Mi
+              cpu: "1"
+            requests:
+              memory: 128Mi
+              cpu: "0.2"
