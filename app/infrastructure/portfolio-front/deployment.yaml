@@ -16,21 +16,20 @@ spec:
         - name: portfolio-front
           image: mohamedbenattia/portfolio-front
           imagePullPolicy: Always
-          env:
-            - name: MSA_HOST
-              value: "ma-a-svc"
-            - name: MSA_PORT
-              value: "80"
-            - name: MSB_HOST
-              value: "ms-b-svc.ms-b-ns"
-            - name: MSB_PORT
-              value: "81"
           ports:
             - containerPort: 3000
-          resources:
-            limits:
-              memory: 50Mi
-              cpu: "1"
-            requests:
-              memory: 128Mi
-              cpu: "0.2"
+          env:
+            - name: REACT_APP_MSA_URL
+              value: http://localhost:3001
+            - name: REACT_APP_MSB_URL
+              value: http://localhost:3002
+          volumeMounts:
+            - name:  portfolio-front-config-volume
+              mountPath: /usr/share/nginx/html/config.js
+              subPath: config.js
+              readOnly: true
+      volumes:
+        - name: portfolio-front-config-volume
+          configMap:
+            name: portfolio-front-config
+         

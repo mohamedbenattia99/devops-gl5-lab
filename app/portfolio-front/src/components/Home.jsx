@@ -4,10 +4,12 @@ import {InfinitySpin} from "react-loader-spinner";
 import Project from "./Project";
 import Profile from "./Profile";
 
-const PORTFOLIO_URL = process.env.MSA_HOST || "localhost" ;
-const msaPort = parseInt(process.env.MSA_PORT) || 3001;
-const PROFILE_URL = process.env.MSB_HOST || "localhost" ;
-const msbPort = parseInt(process.env.MSB_PORT) || 3002;
+
+const PORTFOLIO_URL = process.env.REACT_APP_MSA_URL || "localhost" ;
+//const msaPort = window.REACT_APP_MSA_PORT || 3001;
+const PROFILE_URL = process.env.REACT_APP_MSB_URL || "localhost" ;
+//const msbPort = window.REACT_APP_MSB_PORT || 3002;
+console.log(process.env.REACT_APP_MSA_URL)
 
 
 
@@ -28,7 +30,7 @@ export default function ProfileRepo() {
      * If username doesn't exist we redirect to 404 page
      */
     const getProfile = () => {
-        axios.get(`http://${PROFILE_URL}:${msbPort}/profile`)
+        axios.get(`${PROFILE_URL}/profile`)
             .then(response => {
                 setProfile(response.data);
                 console.log("PROFILE: ",response.data);
@@ -44,7 +46,7 @@ export default function ProfileRepo() {
      * Set FiltredProjects to all fetched projects
      * */
     const getProjects = () => {
-        axios.get(`http://${PORTFOLIO_URL}:${msaPort}/projects`)
+        axios.get(`${PORTFOLIO_URL}/projects`)
             .then(response => {
                 setProjects(response.data);
                 setIsLoading(false);

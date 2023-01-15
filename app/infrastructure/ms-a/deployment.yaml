@@ -16,17 +16,6 @@ spec:
         - name: ms-a
           image: mohamedbenattia/ms-a
           imagePullPolicy: Always
-          env:
-            - name: MSB_HOST
-              value: "ms-b-svc.ms-b-ns"
-            - name: MSB_PORT
-              value: "80"
           ports:
-            - containerPort: 3000
-          resources:
-            limits:
-              memory: 5Mi
-              cpu: "1"
-            requests:
-              memory: 128Mi
-              cpu: "0.2"
+            - containerPort: 3001
+          
