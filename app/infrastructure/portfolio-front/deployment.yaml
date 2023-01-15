@@ -1,31 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ms-a
+  name: portfolio-front
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: ms-a
+      name: portfolio-front
   template:
     metadata:
       labels:
-        name: ms-a
+        name: portfolio-front
     spec:
       containers:
-        - name: ms-a
-          image: mohamedbenattia/ms-a
+        - name: portfolio-front
+          image: mohamedbenattia/portfolio-front
           imagePullPolicy: Always
           env:
+            - name: MSA_HOST
+              value: "ma-a-svc"
+            - name: MSA_PORT
+              value: "80"
             - name: MSB_HOST
               value: "ms-b-svc.ms-b-ns"
             - name: MSB_PORT
-              value: "80"
+              value: "81"
           ports:
             - containerPort: 3000
           resources:
             limits:
-              memory: 5Mi
+              memory: 50Mi
               cpu: "1"
             requests:
               memory: 128Mi
