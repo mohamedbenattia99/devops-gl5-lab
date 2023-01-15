@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+.projects-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-content: space-between;
+}
