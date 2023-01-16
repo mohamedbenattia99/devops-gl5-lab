@@ -1,16 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: portfolio-front
+  name: portfolio-front-v1
+  labels:
+    app: portfolio-front
+    version: 1.0.0
 spec:
   replicas: 1
   selector:
     matchLabels:
       name: portfolio-front
+      version: 1.0.0
   template:
     metadata:
       labels:
         name: portfolio-front
+        version: 1.0.0
     spec:
       containers:
         - name: portfolio-front
@@ -32,4 +37,45 @@ spec:
         - name: portfolio-front-config-volume
           configMap:
             name: portfolio-front-config
-         
+        
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio-front-v2
+  labels:
+    app: portfolio-front
+    version: 2.0.0
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: portfolio-front
+      version: 2.0.0
+  template:
+    metadata:
+      labels:
+        name: portfolio-front
+        version: 2.0.0
+    spec:
+      containers:
+        - name: portfolio-front
+          image: mohamedbenattia/portfolio-front:2.0.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_MSA_URL
+              value: http://localhost:3001
+            - name: REACT_APP_MSB_URL
+              value: http://localhost:3002
+          volumeMounts:
+            - name:  portfolio-front-config-volume
+              mountPath: /usr/share/nginx/html/config.js
+              subPath: config.js
+              readOnly: true
+      volumes:
+        - name: portfolio-front-config-volume
+          configMap:
+            name: portfolio-front-config
