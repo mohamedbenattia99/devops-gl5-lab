@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: portfolio-front
-          image: mohamedbenattia/portfolio-front
+          image: amalmissaoui9/project-portfolio
           imagePullPolicy: Always
           ports:
             - containerPort: 3000

@@ -1,0 +1,10 @@
+deployment:
+  replicas: 3
+
+image:
+  name: amalmissaoui9/project-ms-a
+  tag: latest
+
+http:
+  containerPort: 3001
+  port: 80
