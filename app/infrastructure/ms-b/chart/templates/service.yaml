@@ -6,8 +6,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+    - port: {{.Values.http.port}}
       protocol: TCP
-      targetPort: 3002
+      targetPort: {{.Values.http.containerPort}}
   selector:
     name: ms-b

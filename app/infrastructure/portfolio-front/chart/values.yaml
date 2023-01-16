@@ -1,0 +1,11 @@
+
+deployment:
+  replicas: 2
+
+image:
+  name: mohamedbenattia/portfolio-front
+  tag: 2.0.0
+
+http:
+  containerPort: 3000
+  port: 80

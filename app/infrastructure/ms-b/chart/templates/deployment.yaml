@@ -4,7 +4,7 @@ metadata:
   name: ms-b
   namespace: ms-b-ns
 spec:
-  replicas: 1
+  replicas: {{ .Values.deployment.replicas}}
   selector:
     matchLabels:
       name: ms-b
@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: ms-b
-          image: mohamedbenattia/ms-b
+          image: {{.Values.image.name}}:{{.Values.image.tag}}
           imagePullPolicy: Always
           ports:
-            - containerPort: 3002
+            - containerPort: {{.Values.http.containerPort}}
         

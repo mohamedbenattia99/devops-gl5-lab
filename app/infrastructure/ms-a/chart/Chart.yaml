@@ -1,0 +1,4 @@
+apiVersion: v2
+name: ms-a
+description: A single-sentence description of this project
+version: 0.1.0

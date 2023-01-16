@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ms-a
 spec:
-  replicas: 1
+  replicas: {{ .Values.deployment.replicas}}
   selector:
     matchLabels:
       name: ms-a
@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
         - name: ms-a
-          image: mohamedbenattia/ms-a
+          image: {{.Values.image.name}}:{{.Values.image.tag}}
           imagePullPolicy: Always
           ports:
-            - containerPort: 3001
+            - containerPort: {{.Values.http.containerPort}}
        
           
