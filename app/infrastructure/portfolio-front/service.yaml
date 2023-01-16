@@ -10,3 +10,4 @@ spec:
       targetPort: 3000
   selector:
     name: portfolio-front
+    version: 2.0.0

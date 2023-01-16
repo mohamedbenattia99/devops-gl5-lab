@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'react-bootstrap/Image';
-import {AiFillLinkedin, AiFillGithub, AiFillInstagram, AiFillMail, AiFillEnvironment, AiFillPhone} from 'react-icons/ai'
+import {AiFillLinkedin, AiFillGithub, AiFillInstagram, AiFillMail} from 'react-icons/ai'
 
 
 const Profile = ({ profile }) => (
@@ -14,11 +14,10 @@ const Profile = ({ profile }) => (
         <h3 className='text-xl md:text-2xl'>{profile.position}</h3>
         <p className='text-md py-1 text-gray-800 md:text-xl'>{profile.description} </p>
         <div className='text-5xl py-4 flex justify-center gap-16 text-gray-600'>
-           
            <AiFillLinkedin size={60}/> 
             <AiFillGithub size={60}/>
             <AiFillInstagram size={60}/>
-           
+            <AiFillMail size={60} />
         </div>
     </section>
 

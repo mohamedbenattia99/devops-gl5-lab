@@ -11,9 +11,6 @@ const PROFILE_URL = process.env.REACT_APP_MSB_URL || "localhost" ;
 //const msbPort = window.REACT_APP_MSB_PORT || 3002;
 console.log(process.env.REACT_APP_MSA_URL)
 
-
-
-
 export default function ProfileRepo() {
     const [profile,setProfile] = useState({});
     const [projects,setProjects] = useState([]);
@@ -25,10 +22,7 @@ export default function ProfileRepo() {
         getProjects();
     }, []);
     
-    /**
-     * Fetching user info from github api
-     * If username doesn't exist we redirect to 404 page
-     */
+  
     const getProfile = () => {
         axios.get(`${PROFILE_URL}/profile`)
             .then(response => {
@@ -40,11 +34,7 @@ export default function ProfileRepo() {
             })
     }
 
-    /**
-     * Fetching user projects by username
-     * Set Loading to false to render UI
-     * Set FiltredProjects to all fetched projects
-     * */
+   
     const getProjects = () => {
         axios.get(`${PORTFOLIO_URL}/projects`)
             .then(response => {
