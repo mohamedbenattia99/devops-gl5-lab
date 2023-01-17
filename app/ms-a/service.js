@@ -9,9 +9,10 @@ function getProjects() {
                 status: 202
             })
         }
-
+        console.log("prokkkk: ",projects)
         resolve(projects)
     })
 }
+
 
 module.exports = getProjects;

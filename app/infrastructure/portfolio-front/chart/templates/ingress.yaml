@@ -5,7 +5,7 @@ metadata:
   name: portfolio-front
 spec:
   rules:
-  - host: gl5.devops
+  - host: gl5.lab
     http:
       paths:
       - backend:

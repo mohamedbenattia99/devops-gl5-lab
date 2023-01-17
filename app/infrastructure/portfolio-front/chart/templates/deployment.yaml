@@ -6,7 +6,7 @@ metadata:
     app: portfolio-front
     version: 1.0.0
 spec:
-  replicas: 1
+  replicas: {{ .Values.deployment.replicas}}
   selector:
     matchLabels:
       name: portfolio-front
@@ -19,10 +19,10 @@ spec:
     spec:
       containers:
         - name: portfolio-front
-          image: mohamedbenattia/portfolio-front:latest
+          image: mohamedbenattia/portfolio-front
           imagePullPolicy: Always
           ports:
-            - containerPort: 3000
+            - containerPort: {{.Values.http.containerPort}}
           env:
             - name: REACT_APP_MSA_URL
               value: http://localhost:3001
@@ -48,7 +48,7 @@ metadata:
     app: portfolio-front
     version: 2.0.0
 spec:
-  replicas: 1
+  replicas: {{ .Values.deployment.replicas}}
   selector:
     matchLabels:
       name: portfolio-front
@@ -61,10 +61,10 @@ spec:
     spec:
       containers:
         - name: portfolio-front
-          image: mohamedbenattia/portfolio-front:2.0.0
+          image: {{.Values.image.name}}:{{.Values.image.tag}}
           imagePullPolicy: Always
           ports:
-            - containerPort: 3000
+            - containerPort: {{.Values.http.containerPort}}
           env:
             - name: REACT_APP_MSA_URL
               value: http://localhost:3001

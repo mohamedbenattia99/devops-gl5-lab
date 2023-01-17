@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-b
+  namespace: ms-b-ns
+spec:
+  replicas: {{ .Values.deployment.replicas}}
+  selector:
+    matchLabels:
+      name: ms-b
+  template:
+    metadata:
+      labels:
+        name: ms-b
+    spec:
+      containers:
+        - name: ms-b
+          image: {{.Values.image.name}}:{{.Values.image.tag}}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{.Values.http.containerPort}}

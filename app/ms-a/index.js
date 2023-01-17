@@ -1,6 +1,8 @@
 const express = require("express");
 const client = require('prom-client')
-const getProjects = require('./model')
+const getProjects = require('./service')
+const getProject = require('./service2')
+
 // Create a Registry which registers the metrics
 const register = new client.Registry()
 
@@ -44,7 +46,29 @@ app.get('/projects', async (req, res) => {
   const route = req.route.path;
   res.header("Access-Control-Allow-Origin", "*");
   await getProjects()
-  .then(posts => res.json(posts))
+  .then(posts => {
+    console.log("bealdknazekjd")
+    res.json(posts)
+  })
+  .catch(err => {
+      if (err.status) {
+          res.status(err.status).json({ message: err.message })
+      } else {
+          res.status(500).json({ message: err.message })
+      }
+  })
+  end({ route, code: res.statusCode, method: req.method });
+})
+
+app.get('/projects/:id', async (req, res) => {
+  const end = httpRequestTimer.startTimer();
+  const route = req.route.path;
+  res.header("Access-Control-Allow-Origin", "*");
+  
+  await getProject(req.params.id)
+  .then(project => {
+    res.json(project)
+  })
   .catch(err => {
       if (err.status) {
           res.status(err.status).json({ message: err.message })

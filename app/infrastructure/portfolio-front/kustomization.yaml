@@ -1,5 +1,5 @@
 secretGenerator:
 - name: backend-url
   literals:
-  - REACT_APP_MSA_URL=http://localhost:3001
-  - REACT_APP_MSB_URL=http://localhost:3002
+  - REACT_APP_MSA_URL=http://ms-a-svc:80
+  - REACT_APP_MSB_URL=http://ms-b-svc.ms-b-ns:80

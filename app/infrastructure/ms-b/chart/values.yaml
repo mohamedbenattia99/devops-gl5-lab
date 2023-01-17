@@ -1,0 +1,11 @@
+
+deployment:
+  replicas: 2
+
+image:
+  name: mohamedbenattia/ms-b
+  tag: latest
+
+http:
+  containerPort: 3002
+  port: 80

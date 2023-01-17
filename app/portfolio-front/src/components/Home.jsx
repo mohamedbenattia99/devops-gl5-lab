@@ -5,11 +5,11 @@ import Project from "./Project";
 import Profile from "./Profile";
 
 
-const PORTFOLIO_URL = process.env.REACT_APP_MSA_URL || "localhost" ;
-//const msaPort = window.REACT_APP_MSA_PORT || 3001;
-const PROFILE_URL = process.env.REACT_APP_MSB_URL || "localhost" ;
-//const msbPort = window.REACT_APP_MSB_PORT || 3002;
-console.log(process.env.REACT_APP_MSA_URL)
+
+const PORTFOLIO_URL = process.env.REACT_APP_MSA_URL || "http://localhost:3001" ;
+const PROFILE_URL = process.env.REACT_APP_MSB_URL || "http://localhost:3002" ;
+
+console.log("process.env : ",process.env.REACT_APP_MSA_URL)
 
 export default function ProfileRepo() {
     const [profile,setProfile] = useState({});

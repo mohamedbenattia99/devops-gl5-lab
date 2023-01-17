@@ -1,0 +1,4 @@
+apiVersion: v2
+name: ms-a
+description: Miscroservice to fetch projects
+version: 0.1.0
