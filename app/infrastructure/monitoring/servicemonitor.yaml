@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1 
+kind: ServiceMonitor 
+metadata:
+  name: ms-a-svc
+  namespace: monitoring # namespace where prometheus is running
+  labels:
+    release: kube-prometheus-stack  # name of the release 
+    # ( VERY IMPORTANT: You need to know the correct release name by viewing 
+    # the servicemonitor of Prometheus itself: Without the correct name, 
+    #  Prometheus cannot identify the metrics of the Flask app as the target.)
+spec:
+  endpoints:
+  - interval: 15s # scrape interval
+    path: /metrics # path to scrape
+    port: http # named port in target app
+  namespaceSelector:
+    matchNames:
+      - ms-a-svc
+  selector:
+    matchLabels:
+      # Target app service 
+      name: ms-a-svc # same  as above

@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: ms-a-podmonitor
+  labels:
+    name: ms-a-podmonitor
+    release: kube-prometheus-stack
+spec:
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      name: ms-a
+  podMetricsEndpoints:
+  - targetPort: 3001
