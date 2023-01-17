@@ -2,6 +2,8 @@ const express = require("express");
 const client = require('prom-client')
 const getProjects = require('./service')
 const getProject = require('./service2')
+const logger = require('./logging/logger');
+const requestIP = require('request-ip');
 
 // Create a Registry which registers the metrics
 const register = new client.Registry()
@@ -42,34 +44,49 @@ app.get('/metrics', async (req, res) => {
 });
 
 app.get('/projects', async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  
+  const ipAddress = requestIP.getClientIp(req);
+
   const end = httpRequestTimer.startTimer();
   const route = req.route.path;
-  res.header("Access-Control-Allow-Origin", "*");
+  
   await getProjects()
-  .then(posts => {
-    console.log("bealdknazekjd")
-    res.json(posts)
+        .then(posts => {
+    
+          logger.info('info', 'Successfully got all the projects', { RequestIP: `${ipAddress}`});
+          res.json(posts)
+        })
+        .catch(err => {
+          logger.error('Error finding projects', { RequestIP: `${ipAddress}`});
+          if (err.status) {
+            res.status(err.status).json({ message: err.message })
+          } 
+          else {
+              res.status(500).json({ message: err.message })
+            }
   })
-  .catch(err => {
-      if (err.status) {
-          res.status(err.status).json({ message: err.message })
-      } else {
-          res.status(500).json({ message: err.message })
-      }
-  })
+
   end({ route, code: res.statusCode, method: req.method });
+
 })
 
 app.get('/projects/:id', async (req, res) => {
+ 
   const end = httpRequestTimer.startTimer();
   const route = req.route.path;
   res.header("Access-Control-Allow-Origin", "*");
   
+  const ipAddress = requestIP.getClientIp(req);
+
   await getProject(req.params.id)
   .then(project => {
     res.json(project)
+    logger.info('info', 'Successfully got all the projects', { RequestIP: `${ipAddress}`});
   })
   .catch(err => {
+    //logging
+      logger.error('Error finding projects', { RequestIP: `${ipAddress}`});
       if (err.status) {
           res.status(err.status).json({ message: err.message })
       } else {

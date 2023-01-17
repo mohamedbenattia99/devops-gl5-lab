@@ -23,11 +23,14 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
-          env:
-            - name: REACT_APP_MSA_URL
-              value: http://localhost:3001
-            - name: REACT_APP_MSB_URL
-              value: http://localhost:3002
+          envFrom:
+          - secretRef:
+              name: backend-url
+          #env:
+          #  - name: REACT_APP_MSA_URL
+          #    value: http://localhost:3001
+          #  - name: REACT_APP_MSB_URL
+          #    value: http://localhost:3002
           volumeMounts:
             - name:  portfolio-front-config-volume
               mountPath: /usr/share/nginx/html/config.js
@@ -65,11 +68,14 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
-          env:
-            - name: REACT_APP_MSA_URL
-              value: http://localhost:3001
-            - name: REACT_APP_MSB_URL
-              value: http://localhost:3002
+          envFrom:
+          - secretRef:
+              name: backend-url
+          #env:
+          #  - name: REACT_APP_MSA_URL
+          #    value: http://localhost:3001
+          #  - name: REACT_APP_MSB_URL
+          #    value: http://localhost:3002
           volumeMounts:
             - name:  portfolio-front-config-volume
               mountPath: /usr/share/nginx/html/config.js
