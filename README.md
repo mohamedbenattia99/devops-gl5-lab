@@ -37,7 +37,7 @@ We also configured Terraform to use Azure Blob Storage as remote state backend.
 ### 2. Monitoring automation
 We created the monitoring setup for our application using Kubernetes provider as well as Helm provider. We used the kube-prometheus-stack helm chart to install proetheus and grafana. 
 
-## 3. Deployment
+## 4. Deployment
 This is the architecture of the deployment of the application.
 
 ![architecture](https://github.com/mohamedbenattia99/devops-gl5-lab/blob/main/screenshots/5.png)
