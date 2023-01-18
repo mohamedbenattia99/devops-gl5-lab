@@ -1,7 +1,9 @@
-targetSystem: "windows"
 datadog:
   logs:
     enabled: true
     containerCollectAll: true
+  site: datadoghq.eu
+  kubelet: 
+    tlsVerify: false
   # datadog.apiKey -- Your Datadog API key
   apiKey: "17c3b5c3d0a8b791be34f3ee18da74c03409c756"

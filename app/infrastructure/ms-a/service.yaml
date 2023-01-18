@@ -3,7 +3,7 @@ kind: Service
 metadata:
     name: ms-a-svc
     annotations:
-        ad.datadoghq.com/ms-a.logs: '[{"source":"nginx","service":"ms-a"}]'
+        ad.datadoghq.eu/ms-a.logs: '[{"source":"nginx","service":"ms-a"}]'
 spec:
   type: ClusterIP
   ports:
